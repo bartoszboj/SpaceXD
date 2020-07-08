@@ -1,6 +1,4 @@
 <template>
-    <div class="searchWrapper">
-        <div class="search">
             <input
             id="search"
             name="search"
@@ -8,8 +6,6 @@
             :class="{ dark: dark}"
             @input="handleChange"
             />
-        </div>
-    </div>
 </template>
 
 <script>
@@ -36,21 +32,25 @@ export default {
 <style lang="scss" scoped>
 
     input {
+        width: 300px;
         margin-top: 30px;
         height: 30px;
         border: 0;
+        font-size: 1.3rem;
+        font-family: 'Orbitron';
         text-align: center;
         border-bottom: 1px solid rgb(209, 208, 208);
         color: rgb(209, 208, 208);
         background: none;
-        transition: box-shadow .5s;
+        transition: .5s;
   }
   input:focus{
       box-shadow: 0 10px 20px -8px rgba(209, 209, 209, .3)
   }
   .dark{
-      color: #1e3d4a;
-      border-bottom: 1px solid #1e3d4a;
+      color: #404f55;
+      border-bottom: 1px solid #404f55;
+      width: 400px;
   }
 
 </style>

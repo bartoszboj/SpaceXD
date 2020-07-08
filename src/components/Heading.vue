@@ -28,10 +28,13 @@ export default {
     }
     .claim{
         font-size: 50px;
+        font-family: 'Press Start 2P', sans-serif;
         margin: 0;
-        font-weight: 800;
+        font-weight: 700;
+        letter-spacing: 5px;
     }
     .subclaim{
+        font-family: 'Orbitron';
         margin: 20px 0 0 0;
         font-size: 14px;
     }
