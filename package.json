@@ -11,6 +11,7 @@
     "axios": "^0.19.2",
     "core-js": "^3.6.5",
     "lodash.debounce": "^4.0.8",
+    "lozad": "^1.15.0",
     "sass": "^1.26.10",
     "sass-loader": "^9.0.2",
     "vue": "^2.6.11"

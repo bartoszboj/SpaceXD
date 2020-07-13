@@ -1,5 +1,5 @@
 <template>
-    <img :src="photo" alt="title" loading="lazy">
+    <img :src="photo" :alt="name" loading="lazy">
 </template>
 
 <script>
@@ -17,11 +17,6 @@
                 name: this.picture.data[0].title
             };
         },
-        computed:{
-            imgSource () {
-                return this.photo
-            }
-        }
     }
 </script>
 

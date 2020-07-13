@@ -38,4 +38,27 @@ export default {
         margin: 20px 0 0 0;
         font-size: 14px;
     }
+
+    @media (max-width: 1024px){
+
+    }
+    @media (max-width: 780px){
+
+    }
+    @media (max-width: 480px){
+        .claim{
+          font-size: 35px;
+        }
+        .subclaim{
+          font-size: 16px;
+        }
+    }
+    @media (max-width: 320px){
+      .claim{
+        font-size: 30px;
+      }
+      .subclaim{
+        font-size: 13px;
+      }
+    }
 </style>

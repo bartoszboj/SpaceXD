@@ -11,12 +11,18 @@
 
       <Heading v-if="step === 0"/>
       <SearchInput v-model="searchValue" @input="handleInput" :dark="step === 1"/>
-      <ul class="results" v-if="results && !loading && step === 1">
+      <div class="results" v-if="results.length > 1 && !loading && step === 1">
         <Picture
         v-for="(item, index) in results" :key="item.data[0].nasa_id + index"
         :picture="item"
+        @click.native="openModal(item)"
         />
-      </ul>
+      </div>
+      <p class="center" v-if="results.length < 1 && step === 1" >hmmm... didn't hear about it</p>
+      
+      <transition name="bounce">
+        <modal-info v-if="modalOpen" :item="modalItem" @closeModal="modalOpen = false"></modal-info>
+      </transition>
     </div>
   </div>
 </template>
@@ -27,7 +33,8 @@ import debounce from 'lodash.debounce';
 import Heading from '@/components/Heading.vue';
 import SearchInput from '@/components/SearchInput.vue';
 import HeroImage from '@/components/HeroImage.vue';
-import Picture from '@/components/Picture.vue'
+import Picture from '@/components/Picture.vue';
+import ModalInfo from '@/components/ModalInfo.vue';
 
 
 const URL = 'https://images-api.nasa.gov/';
@@ -40,20 +47,26 @@ export default {
       step: 0,
       searchValue: '',
       results: [],
+      modalOpen: false,
+      modalItem: null,
     };
   },
   components: {
     Heading,
     SearchInput,
     HeroImage,
-    Picture
+    Picture,
+    ModalInfo
   },
   methods: {
+    openModal (item) {
+      this.modalOpen = true;
+      this.modalItem = item;
+    },
     handleInput: debounce(function () {
       this.loading = true;
       axios.get(`${URL}search?q=${this.searchValue}&media_type=image`)
         .then((respo) => {
-          console.log(respo.data.collection.items)
           this.results = respo.data.collection.items;
           this.loading = false;
           this.step = 1;
@@ -63,14 +76,24 @@ export default {
         });
     }, 700),
   },
-};
+}
 </script>
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap');
-
+  
+  *{
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    }
   .wrapper {
     display: flex;
     flex-direction: column;
@@ -85,22 +108,19 @@ export default {
     &.flexStart{
       justify-content: flex-start;
     }
-  }
-  *{
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    .center{
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.2rem;
+    }
   }
 
   input:focus, textarea:focus, select:focus{
     outline: none;
   }
-  body{
-    margin: 0;
-    padding: 0;
-    font-family: 'Montserrat', sans-serif;
-  }
-
+ 
   .fade-enter-active, .fade-leave-active {
     transition: opacity .5s ease;
   }
@@ -118,6 +138,24 @@ export default {
   }
   .slideInput-enter, .slideInput-leave-to {
     margin-top: 0;
+  }
+
+  .bounce-enter-active {
+    animation: bounce-in .4s;
+  }
+  .bounce-leave-active {
+    animation: bounce-in .5s reverse;
+  }
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.3);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
   .logo {
     position: absolute;
@@ -138,12 +176,12 @@ export default {
     // justify-content: center;
     // align-items: center;
   }
-  @media (max-width: 1200px){
+  @media (max-width: 1024px){
     .results{
       column-count: 4;
     }
   }
-  @media (max-width: 800px){
+  @media (max-width: 780px){
     .results{
       column-count: 3;
     }
@@ -153,5 +191,4 @@ export default {
       column-count: 2;
     }
   }
-  
 </style>
