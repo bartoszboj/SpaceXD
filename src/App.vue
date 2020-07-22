@@ -148,13 +148,12 @@ export default {
   }
   @keyframes bounce-in {
     0% {
-      transform: scale(0);
-    }
-    50% {
-      transform: scale(1.3);
+      margin-top: 100vh;
+      opacity: 0;
     }
     100% {
-      transform: scale(1);
+      margin-top: 0;
+      opacity: 1;
     }
   }
   .logo {

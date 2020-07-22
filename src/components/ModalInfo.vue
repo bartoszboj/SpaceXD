@@ -44,6 +44,7 @@
     .modalInnerWrapper{
         position: relative;
         height: 100%;
+        width: 100%;
         padding: 10px;
         display: flex;
         flex-direction: column;
@@ -62,22 +63,29 @@
             }
         }
         .imgWrapper{
-            margin-top: 15px;
+            padding: 15px;
             display: flex;
-            justify-content: center;
             align-items: center;
-            max-height: 90%;
-            width: auto;
+            justify-content: center;
+            height: 100%;
+            max-width: 50%;
 
             img{
+                object-fit: cover;
                 max-width: 100%;
-                height: auto;
-                padding: 20px;
+                max-height: 100%;
+                 
             }
         }
         .infoWrapper{
-            height: auto;
-            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 50%;
+            max-width: 80%;
+            padding: 20px;
         }
     }
   @media (min-width: 1024px){
@@ -93,9 +101,9 @@
       .modalInnerWrapper{
           flex-direction: row;
           align-items: center;
+          justify-content: space-between;
 
           .imgWrapper{
-              margin: 0;
 
           }
       }
