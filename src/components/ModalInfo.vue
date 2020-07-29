@@ -7,8 +7,11 @@
             </div>
 
             <div class="infoWrapper">
-                <h2 class="title">Lorem Ipsum</h2>
-                <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id consequatur sint placeat veniam, neque unde quaerat molestiae tempora optio. Quaerat fugit ad voluptates hic eos laudantium exercitationem? Cupiditate, temporibus dolorum.</p>
+                <h2 class="title">{{ name }}</h2>
+                <h3 v-if="date" class="additionalInfo"> {{ date }}</h3>
+                <h3 v-if="creator" class="additionalInfo">{{ creator }}</h3>
+                <h3 v-if="secondaryCreator" class="additionalInfo">{{ secondaryCreator }}</h3>
+                <p class="description">{{ description }}</p>
             </div>
         </div>
     </div>
@@ -26,7 +29,13 @@
         data() {
             return{
                 photo: this.item.links[0].href,
-                name: this.item.data[0].title
+                name: this.item.data[0].title,
+                date: this.item.data[0].date_created,
+                description: this.item.data[0].description,
+                creator: this.item.data[0].center,
+                secondaryCreator: this.item.data[0].secondary_creator
+
+
             }
         }
     }
@@ -34,7 +43,7 @@
 
 <style lang="scss" scoped>
     .modalOuterWrapper{
-        max-width: 100%;
+        width: 100%;
         height: 100%;
         background-color: rgb(209, 208, 208);
         position: fixed;
@@ -48,6 +57,8 @@
         padding: 10px;
         display: flex;
         flex-direction: column;
+        align-items: center;
+        overflow: auto;
 
         .closeWrapper{
             position: absolute;
@@ -63,12 +74,11 @@
             }
         }
         .imgWrapper{
-            padding: 15px;
+            padding-top: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100%;
-            max-width: 50%;
+            max-width: 90%;
 
             img{
                 object-fit: cover;
@@ -80,12 +90,18 @@
         .infoWrapper{
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            width: 50%;
-            max-width: 80%;
-            padding: 20px;
+            width: 90%;
+
+            .additionalInfo{
+                font-weight: normal;
+                font-size: 15px;
+                padding: 0;
+                margin: 0;
+                font-style: oblique;
+            }
+            .description{
+                text-indent: 1.5em;
+            }
         }
     }
   @media (min-width: 1024px){
@@ -104,7 +120,15 @@
           justify-content: space-between;
 
           .imgWrapper{
-
+              padding: 15px;
+              height: 100%;
+              width: 50%;
+              max-width: 50%;
+          }
+          .infoWrapper{
+              height: 100%;
+              padding: 20px;
+              max-width: 60%;
           }
       }
   }
