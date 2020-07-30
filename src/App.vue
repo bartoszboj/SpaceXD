@@ -162,6 +162,7 @@ export default {
     font-size: 1.2rem;
     letter-spacing: 5px;
     font-family: 'Press Start 2P';
+    user-select: none;
   }
   .results{
     width: 100%;
@@ -169,11 +170,6 @@ export default {
     margin-top: 40px;
     column-count: 5;
     column-gap: 5px;
-    // padding: 0;
-    // display: flex;
-    // flex-wrap: wrap;
-    // justify-content: center;
-    // align-items: center;
   }
   @media (max-width: 1024px){
     .results{

@@ -18,13 +18,14 @@ export default {
 
 <style lang="scss" scoped>
     .headingWrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: rgb(209, 208, 208);
-    text-shadow: 3px 3px 5px black;
+      user-select: none;  
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: rgb(209, 208, 208);
+      text-shadow: 3px 3px 5px black;
     }
     .claim{
         font-size: 50px;

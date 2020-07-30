@@ -1,17 +1,19 @@
 <template>
-    <div class=modalOuterWrapper>
-        <div class="modalInnerWrapper">
-                <div class="closeWrapper" @click="$emit('closeModal')">x</div>
-            <div class="imgWrapper">
-                <img :src="photo" alt="">
-            </div>
+    <div class="modalMask">
+        <div class=modalOuterWrapper>
+            <div class="modalInnerWrapper">
+                    <div class="closeWrapper" @click="$emit('closeModal')">x</div>
+                <div class="imgWrapper">
+                    <img :src="photo" alt="">
+                </div>
 
-            <div class="infoWrapper">
-                <h2 class="title">{{ name }}</h2>
-                <h3 v-if="date" class="additionalInfo"> {{ date }}</h3>
-                <h3 v-if="creator" class="additionalInfo">{{ creator }}</h3>
-                <h3 v-if="secondaryCreator" class="additionalInfo">{{ secondaryCreator }}</h3>
-                <p class="description">{{ description }}</p>
+                <div class="infoWrapper">
+                    <h2 class="title">{{ name }}</h2>
+                    <h3 v-if="date" class="additionalInfo"> {{ date }}</h3>
+                    <h3 v-if="creator" class="additionalInfo">{{ creator }}</h3>
+                    <h3 v-if="secondaryCreator" class="additionalInfo">{{ secondaryCreator }}</h3>
+                    <p class="description">{{ description }}</p>
+                </div>
             </div>
         </div>
     </div>
@@ -42,6 +44,15 @@
 </script>
 
 <style lang="scss" scoped>
+    .modalMask{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 50;
+    }
     .modalOuterWrapper{
         width: 100%;
         height: 100%;
@@ -49,6 +60,7 @@
         position: fixed;
         top: 0;
         left: 0;
+        z-index: 100;
     }
     .modalInnerWrapper{
         position: relative;
